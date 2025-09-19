@@ -3,15 +3,15 @@ import { StyleSheet } from 'react-native';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 
-export default function HomeScreen() {
+export default function QuizScreen() {
   return (
     <ThemedView style={styles.container}>
-      <ThemedView style={styles.shotContainer}>
-        <ThemedText style={styles.shotText}>
-          Shot quotidien à implémenter
+      <ThemedView style={styles.contentContainer}>
+        <ThemedText type="default">
+          Quiz : Trouvez le verset qui correspond au shot du jour !
         </ThemedText>
-        <ThemedText style={styles.hintText}>
-          Retrouvez le verset dans l'onglet Quiz !
+        <ThemedText style={styles.instruction}>
+          Fonctionnalité à implémenter
         </ThemedText>
       </ThemedView>
     </ThemedView>
@@ -23,19 +23,14 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
   },
-  shotContainer: {
+  contentContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
   },
-  shotText: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    marginBottom: 20,
-  },
-  hintText: {
+  instruction: {
+    marginTop: 20,
     fontSize: 16,
     opacity: 0.7,
     textAlign: 'center',
