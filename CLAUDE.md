@@ -82,6 +82,11 @@ The app has infrastructure for theming:
 - Android with adaptive icons and edge-to-edge display
 - Web with static output and favicon support
 
+## UI/UX Guidelines
+- **No page titles**: Never add titles to any page in the application
+- **Clean interface**: Keep pages focused on content without header text
+- **Tab navigation**: Page identity comes from tab icons and labels, not page titles
+
 ## Configuration Notes
 - TypeScript strict mode is enabled
 - ESLint uses expo configuration
