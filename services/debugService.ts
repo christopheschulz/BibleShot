@@ -1,5 +1,4 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { ShotService } from './shotService';
 
 const DEBUG_DATE_OFFSET_KEY = 'debug_date_offset';
 const DEBUG_MODE_KEY = 'debug_mode_enabled';
@@ -124,12 +123,9 @@ export class DebugService {
     isDebugMode: boolean;
     dayOffset: number;
     simulatedDate: string;
-    remainingShots: number;
   }> {
     const isDebugMode = await this.isDebugModeEnabled();
     const dayOffset = await this.getDebugDateOffset();
-    const shotService = ShotService.getInstance();
-    const remainingShots = await shotService.getRemainingShots();
 
     const debugDate = new Date();
     debugDate.setDate(debugDate.getDate() + dayOffset);
@@ -137,8 +133,7 @@ export class DebugService {
     return {
       isDebugMode,
       dayOffset,
-      simulatedDate: debugDate.toLocaleDateString('fr-FR'),
-      remainingShots
+      simulatedDate: debugDate.toLocaleDateString('fr-FR')
     };
   }
 }

@@ -31,28 +31,14 @@ export default function ProfileScreen() {
       onPress: () => Alert.alert('Support', 'Fonctionnalité à venir'),
       disabled: false,
     },
+    ...__DEV__ ? [{
+      title: 'Debug',
+      icon: '🐛',
+      onPress: () => router.push('/debug'),
+      disabled: false,
+    }] : [],
   ];
 
-  const debugMenuItems = [
-    {
-      title: 'Changement shot',
-      icon: '🎯',
-      onPress: () => router.push('/shotmanagement'),
-      disabled: false,
-    },
-    {
-      title: 'Logs système',
-      icon: '📋',
-      onPress: () => Alert.alert('Logs', 'Fonctionnalité à venir'),
-      disabled: false,
-    },
-    {
-      title: 'Reset données',
-      icon: '🗑️',
-      onPress: () => Alert.alert('Reset', 'Fonctionnalité à venir'),
-      disabled: false,
-    },
-  ];
 
   return (
     <ThemedView style={styles.container}>
@@ -73,28 +59,6 @@ export default function ProfileScreen() {
             </TouchableOpacity>
           ))}
         </ThemedView>
-
-        {__DEV__ && (
-          <ThemedView style={styles.debugSection}>
-            <ThemedText style={styles.debugSectionTitle}>🐛 Debug</ThemedText>
-            <ThemedView style={styles.debugMenuContainer}>
-              {debugMenuItems.map((item, index) => (
-                <TouchableOpacity
-                  key={index}
-                  style={[styles.debugMenuItem, item.disabled && styles.menuItemDisabled]}
-                  onPress={item.onPress}
-                  disabled={item.disabled}
-                >
-                  <ThemedText style={styles.menuIcon}>{item.icon}</ThemedText>
-                  <ThemedText style={[styles.debugMenuText, item.disabled && styles.menuTextDisabled]}>
-                    {item.title}
-                  </ThemedText>
-                  <ThemedText style={styles.debugMenuArrow}>›</ThemedText>
-                </TouchableOpacity>
-              ))}
-            </ThemedView>
-          </ThemedView>
-        )}
       </ThemedView>
     </ThemedView>
   );
@@ -142,40 +106,6 @@ const styles = StyleSheet.create({
     opacity: 0.5,
   },
   menuArrow: {
-    fontSize: 18,
-    opacity: 0.5,
-    fontWeight: 'bold',
-  },
-  debugSection: {
-    marginTop: 30,
-    width: '100%',
-  },
-  debugSectionTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginBottom: 15,
-    textAlign: 'center',
-  },
-  debugMenuContainer: {
-    width: '100%',
-    backgroundColor: 'rgba(128, 128, 128, 0.05)',
-    borderRadius: 12,
-    overflow: 'hidden',
-  },
-  debugMenuItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingHorizontal: 20,
-    paddingVertical: 16,
-    borderBottomWidth: 1,
-    borderBottomColor: 'rgba(128, 128, 128, 0.1)',
-  },
-  debugMenuText: {
-    flex: 1,
-    fontSize: 16,
-    fontWeight: '500',
-  },
-  debugMenuArrow: {
     fontSize: 18,
     opacity: 0.5,
     fontWeight: 'bold',

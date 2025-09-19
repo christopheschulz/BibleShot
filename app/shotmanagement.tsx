@@ -11,8 +11,8 @@ export default function ShotManagementScreen() {
     isDebugMode: boolean;
     dayOffset: number;
     simulatedDate: string;
-    remainingShots: number;
   } | null>(null);
+  const [remainingShots, setRemainingShots] = useState<number>(0);
 
   useEffect(() => {
     loadDebugInfo();
@@ -21,8 +21,13 @@ export default function ShotManagementScreen() {
   const loadDebugInfo = async () => {
     try {
       const debugService = DebugService.getInstance();
+      const shotService = ShotService.getInstance();
+
       const info = await debugService.getCurrentDebugInfo();
+      const remaining = await shotService.getRemainingShots();
+
       setDebugInfo(info);
+      setRemainingShots(remaining);
     } catch (error) {
       console.error('Erreur lors du chargement des infos debug:', error);
     }
@@ -143,7 +148,7 @@ export default function ShotManagementScreen() {
                 </>
               )}
               <ThemedText style={styles.infoText}>
-                Shots restants: {debugInfo.remainingShots}/365
+                Shots restants: {remainingShots}/365
               </ThemedText>
             </ThemedView>
           )}
